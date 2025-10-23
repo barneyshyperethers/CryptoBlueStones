@@ -140,6 +140,10 @@ private-keys.txt
 test-results/
 coverage/
 
+# Deployment files (keep local, don't track in git)
+deployment.json
+scripts/test-deploy.js
+
 # Documentation build
 docs/build/
 
