@@ -94,18 +94,6 @@ The system consists of two main smart contracts:
    npm run deploy
    ```
 
-3. **Deploy to local network:**
-   ```bash
-   npm run deploy:local
-   ```
-
-### Option 3: Mock Deployment (Testing)
-
-For testing without real blockchain:
-```bash
-npm run deploy:mock
-```
-
 ## 📖 Usage
 
 ### User Registration
@@ -182,22 +170,17 @@ crypto_blue_blocks_backend_eth2/
 ├── contracts/                 # Smart contracts
 │   ├── UserFactory.sol       # Factory contract
 │   └── UserProfile.sol       # Profile contract
-├── contracts-for-remix/       # Remix-ready contracts
 ├── scripts/                   # Deployment scripts
 │   ├── deploy.js             # Main deployment script
 │   ├── registerUser.js       # User registration script
 │   └── interactWithProfile.js # Profile interaction script
-├── deployment.json           # Deployment information
 ├── env.template             # Environment variables template
+├── package.json             # Project dependencies
+├── .gitignore              # Git ignore rules
 └── README.md               # This file
 ```
 
 ## 🧪 Testing
-
-Run the test system:
-```bash
-npm run test
-```
 
 Test user registration:
 ```bash

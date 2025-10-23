@@ -5,12 +5,8 @@
   "main": "index.js",
   "scripts": {
     "deploy": "node scripts/deploy.js",
-    "deploy:mock": "node scripts/mock-deploy.js",
-    "deploy:hardhat": "npx hardhat run scripts/hardhat-deploy.js --network hardhat",
-    "deploy:local": "npx hardhat run scripts/hardhat-deploy.js --network localhost",
     "register": "node scripts/registerUser.js",
-    "interact": "node scripts/interactWithProfile.js",
-    "test": "node scripts/testSystem.js"
+    "interact": "node scripts/interactWithProfile.js"
   },
   "keywords": [
     "ethereum",
@@ -26,8 +22,6 @@
     "web3": "^4.3.0"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "@openzeppelin/contracts": "^5.0.0",
-    "hardhat": "^3.0.9"
+    "@openzeppelin/contracts": "^5.0.0"
   }
 }
