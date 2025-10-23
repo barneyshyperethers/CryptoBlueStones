@@ -142,3 +142,9 @@ coverage/
 
 # Documentation build
 docs/build/
+
+
+#deploy
+deployment.json
+test-deploy.js 
+
