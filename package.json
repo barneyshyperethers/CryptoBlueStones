@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "node scripts/deploy.js",
+    "deploy:test": "node scripts/test-deploy.js",
     "register": "node scripts/registerUser.js",
     "interact": "node scripts/interactWithProfile.js"
   },

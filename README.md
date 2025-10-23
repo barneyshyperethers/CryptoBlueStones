@@ -43,7 +43,7 @@ The system consists of two main smart contracts:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd crypto_blue_blocks_backend_eth2
+   
    ```
 
 2. **Install dependencies**
