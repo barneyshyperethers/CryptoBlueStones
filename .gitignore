@@ -150,7 +150,14 @@ scripts/
 
 # Documentation files (keep local, don't track in git)
 SMART_CONTRACT_DOCUMENTATION.md
+SECURITY_ANALYSIS.md
+WITHDRAWAL_FUNCTION.md
 
 # Documentation build
 docs/build/ 
+
+#deploy
+deployment.json
+test-deploy.js 
+
 
