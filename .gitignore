@@ -145,8 +145,7 @@ coverage/
 deployment.json
 scripts/test-deploy.js
 
-# Scripts folder (keep local, don't track in git)
-scripts/
+
 
 # Documentation files (keep local, don't track in git)
 SMART_CONTRACT_DOCUMENTATION.md
@@ -156,8 +155,6 @@ WITHDRAWAL_FUNCTION.md
 # Documentation build
 docs/build/ 
 
-#deploy
-deployment.json
-test-deploy.js 
+
 
 
