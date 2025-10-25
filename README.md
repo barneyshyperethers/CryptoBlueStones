@@ -1,205 +1,158 @@
-# CryptoBlueBlocks
+# MetaMask Wallet Connection
 
-A modern, decentralized data marketplace dashboard built with React, Vite, and TypeScript. This application showcases real-time data feeds, AI-powered agents, and a beautiful Web3-inspired UI.
+A simple Next.js application that demonstrates MetaMask wallet connection using React Context for state management.
 
 ## Features
 
-- 🚀 **Modern Stack**: Built with React 18, Vite 6, and TypeScript
-- 🔄 **React Query**: Powerful data fetching and caching with automatic refetching
-- 🎨 **Beautiful UI**: Radix UI components with Tailwind CSS styling
-- ✨ **Animations**: Smooth animations powered by Motion
-- 📊 **Data Visualization**: Interactive charts with Recharts
-- 🌙 **Theme Support**: Light/dark mode with next-themes
-- 📱 **Responsive Design**: Mobile-first approach with responsive layouts
+- 🔗 **MetaMask Detection**: Automatically detects if MetaMask is installed
+- 🎯 **Simple Connection**: One-click wallet connection
+- 🔄 **State Persistence**: Wallet state persists across page navigation
+- 📱 **Responsive Design**: Works on desktop and mobile
+- ⚡ **Real-time Updates**: Automatically handles account changes
+
+## Tech Stack
+
+- **Next.js 14** (App Router)
+- **React 18** with Context API
+- **TypeScript** for type safety
+- **ethers.js** for Ethereum interactions
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18.x or higher
-- npm or yarn package manager
-
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone <your-repo-url>
-cd CryptoBlueBlocks
-```
-
-2. Install dependencies:
+### 1. Install Dependencies
 
 ```bash
 npm install
 ```
 
-3. Start the development server:
+### 2. Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build for Production
+### 3. Connect Your Wallet
 
-To create an optimized production build:
+1. Make sure you have MetaMask installed in your browser
+2. Click the "Connect Wallet" button
+3. Approve the connection in MetaMask
+4. Your wallet address will be displayed in shortened format
 
-```bash
-npm run build
-```
+## How It Works
 
-The built files will be in the `dist` directory.
+### Wallet Connection Flow
+
+1. **Click "Connect Wallet"** → Checks if MetaMask is installed
+2. **MetaMask Not Installed** → Shows "Please install MetaMask to continue."
+3. **MetaMask Installed** → Opens MetaMask connection prompt
+4. **Connection Successful** → Shows "Connected: 0x8200...4940"
+5. **State Persistence** → Wallet state maintained across all pages
+
+### React Context Features
+
+- **Global State**: Wallet connection state available throughout the app
+- **Automatic Updates**: Listens for account changes in MetaMask
+- **Error Handling**: Displays helpful error messages
+- **Loading States**: Shows loading indicator during connection
 
 ## Project Structure
 
 ```
-CryptoBlueBlocks/
-├── src/
-│   ├── api/            # API functions and data fetching
-│   ├── components/     # React components
-│   │   ├── ui/         # Reusable UI components
-│   │   └── figma/      # Figma-specific components
-│   ├── styles/         # Global styles
-│   ├── App.tsx         # Main application component
-│   └── main.tsx        # Application entry point
-├── index.html          # HTML template
-├── vite.config.ts      # Vite configuration
-└── package.json        # Dependencies and scripts
+├── app/
+│   ├── page.tsx          # Home page
+│   ├── page1/page.tsx    # Demo page 1
+│   ├── page2/page.tsx    # Demo page 2
+│   ├── layout.tsx        # Root layout with WalletProvider
+│   └── globals.css       # Global styles
+├── components/
+│   └── WalletConnect.tsx # Wallet connection component
+├── contexts/
+│   └── WalletContext.tsx # Wallet state management
+├── types/
+│   └── wallet.ts         # TypeScript definitions
+└── package.json
 ```
 
-## Key Technologies
+## Usage
 
-- **[React](https://react.dev/)** - UI library for building user interfaces
-- **[Vite](https://vitejs.dev/)** - Next-generation frontend build tool
-- **[TypeScript](https://www.typescriptlang.org/)** - Typed JavaScript for better DX
-- **[React Query](https://tanstack.com/query/latest)** - Data fetching and caching
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Radix UI](https://www.radix-ui.com/)** - Accessible component primitives
-- **[Motion](https://motion.dev/)** - Animation library
-- **[Recharts](https://recharts.org/)** - Chart library for React
+### Using the Wallet Context
 
-## Learn More
+```typescript
+import { useWallet } from '@/contexts/WalletContext';
 
-### React Query
+function MyComponent() {
+  const {
+    address,
+    isConnected,
+    isLoading,
+    error,
+    connectWallet,
+    disconnectWallet
+  } = useWallet();
 
-This project uses React Query (TanStack Query) for efficient data management:
+  if (isConnected) {
+    return <div>Connected: {address}</div>;
+  }
 
-- **Automatic caching**: Data is cached and reused across components
-- **Auto-refetching**: Live feeds update every 10 seconds
-- **Loading & error states**: Built-in state management for async operations
-- **Background updates**: Data stays fresh without disrupting the UI
+  return <button onClick={connectWallet}>Connect Wallet</button>;
+}
+```
 
-Learn more at [TanStack Query Documentation](https://tanstack.com/query/latest/docs/framework/react/overview)
+### Wallet State
 
-### Vite
+The context provides the following state:
 
-Vite provides lightning-fast development experience:
+- `address`: Connected wallet address (string | null)
+- `isConnected`: Whether wallet is connected (boolean)
+- `isLoading`: Whether connection is in progress (boolean)
+- `error`: Error message if connection fails (string | null)
 
-- **Instant server start**: No matter the app size
-- **Hot Module Replacement**: Updates instantly in the browser
-- **Optimized builds**: Rollup-based production builds
+### Methods
 
-Learn more at [Vite Documentation](https://vitejs.dev/guide/)
+- `connectWallet()`: Initiates wallet connection
+- `disconnectWallet()`: Disconnects wallet and clears state
 
-### Component Library
+## Features Demonstrated
 
-The UI is built with Radix UI primitives and styled with Tailwind CSS:
+- ✅ MetaMask detection and connection
+- ✅ React Context for global state
+- ✅ Cross-page state persistence
+- ✅ Account change detection
+- ✅ Error handling and user feedback
+- ✅ TypeScript type safety
+- ✅ Responsive design
 
-- **Accessibility**: ARIA-compliant components out of the box
-- **Customizable**: Full control over styling and behavior
-- **Unstyled**: No design opinions, just functionality
+## Requirements Met
 
-Learn more at [Radix UI Documentation](https://www.radix-ui.com/docs/primitives/overview/introduction)
+- ✅ "Connect Wallet" button
+- ✅ MetaMask installation check
+- ✅ Connection prompt using `eth_requestAccounts`
+- ✅ Truncated address display
+- ✅ Context state persistence
+- ✅ TypeScript implementation
+- ✅ Cross-page navigation testing
 
-## Deployment
+## Browser Compatibility
 
-### Deploy to Vercel
-
-The easiest way to deploy this application is with [Vercel](https://vercel.com):
-
-1. **Push your code to GitHub, GitLab, or Bitbucket**
-2. **Import your repository to Vercel**
-3. **Vercel will automatically detect Vite** - No additional configuration needed!
-4. **Deploy!** - Your app will be live with a production URL
-
-The project includes:
-
-- ✅ `vercel.json` - Proper configuration for SPA routing
-- ✅ `tsconfig.json` - TypeScript configuration
-- ✅ Correct build output (`dist` directory)
-- ✅ All required dependencies
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
-
-**Build Settings (Auto-configured):**
-
-- Framework Preset: `Vite`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Install Command: `npm install`
-
-### Deploy to Netlify
-
-You can also deploy to [Netlify](https://www.netlify.com/):
-
-1. Push your code to a Git repository
-2. Connect your repository to Netlify
-3. Set build command: `npm run build`
-4. Set publish directory: `dist`
-5. Deploy!
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
-
-### Other Hosting Options
-
-Since this is a static site, you can deploy to:
-
-- **GitHub Pages**: Free hosting for public repositories
-- **Cloudflare Pages**: Fast global CDN with zero-config deployment
-- **AWS S3 + CloudFront**: Scalable and cost-effective
-- **Firebase Hosting**: Simple deployment with Firebase CLI
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
+- Chrome (with MetaMask extension)
+- Firefox (with MetaMask extension)
+- Edge (with MetaMask extension)
+- Safari (with MetaMask extension)
 
 ## Troubleshooting
 
-### Vercel Deployment Issues
+### MetaMask Not Detected
+- Ensure MetaMask extension is installed and enabled
+- Refresh the page after installing MetaMask
+- Check that you're on a supported browser
 
-If you encounter build errors on Vercel, ensure:
-
-1. **Output directory is correct**: Should be `dist` (configured in `vite.config.ts`)
-2. **TypeScript is installed**: Check that `typescript`, `@types/react`, and `@types/react-dom` are in `devDependencies`
-3. **Node.js version**: Vercel uses Node.js 18.x by default, which is compatible with this project
-4. **Build succeeds locally**: Run `npm run build` locally to verify
-
-### Common Build Errors
-
-**Error: "Cannot find module 'typescript'"**
-
-```bash
-npm install --save-dev typescript @types/react @types/react-dom
-```
-
-**Error: "Output directory not found"**
-
-- Check `vite.config.ts` has `outDir: 'dist'`
-- Verify `vercel.json` has `"outputDirectory": "dist"`
-
-**Error: "404 on page refresh"**
-
-- The `vercel.json` includes proper SPA routing configuration
-- All routes redirect to `/index.html`
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Connection Fails
+- Make sure MetaMask is unlocked
+- Check that you have accounts in MetaMask
+- Try refreshing the page and connecting again
 
 ## License
 
-This project is open source and available under the MIT License.
+MIT License - feel free to use this code in your projects!
